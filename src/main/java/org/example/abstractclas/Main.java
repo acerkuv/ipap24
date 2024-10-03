@@ -11,5 +11,7 @@ public class Main {
         mole.setName("Tom");
         System.out.println("Я крот " + mole.getName());
         mole.run();
+
+
     }
 }

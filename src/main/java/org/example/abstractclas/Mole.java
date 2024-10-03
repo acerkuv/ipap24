@@ -1,7 +1,7 @@
 package org.example.abstractclas;
 
 public class Mole extends Animal{
-    private String name;
+
     @Override
     public void run() {
         System.out.println("I'm digging!");
