@@ -8,7 +8,7 @@ public class Main {
         squirel.run();
 
         Mole mole = new Mole();
-        squirel.setName("Tom");
+        mole.setName("Tom");
         System.out.println("Я крот " + mole.getName());
         mole.run();
     }
