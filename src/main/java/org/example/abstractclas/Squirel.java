@@ -1,7 +1,6 @@
 package org.example.abstractclas;
 
 public class Squirel extends Animal{
-    private String name;
     @Override
     public void run() {
         System.out.println("I'm running!");
