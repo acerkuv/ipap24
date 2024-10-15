@@ -5,7 +5,7 @@ public class Main {
         Cow cow = new Cow("Буренка", 10, 120);
         System.out.println( cow.toString());
 
-        Cow cow1 = new Cow("Ластoчка", 5, 20);
+        Cow cow1 = new Cow("Буренка", 10, 120);
 
         System.out.println(cow.equals(cow1));
         System.out.println(cow.hashCode() + " " +cow1.hashCode());
