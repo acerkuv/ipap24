@@ -1,8 +1,5 @@
 package org.example.arraylists;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.File;
 
 import java.util.ArrayList;
@@ -34,12 +31,12 @@ public class Main {
         System.out.println("\n Как животные могут двигаться \n");
         for (Runable r: pets) System.out.println(r.run());
     }
-    @Contract("_, _ -> param1")
-    public static List<String> sumList(List<String> list, @NotNull List<String> list1){
+
+    public static List<String> sumList(List<String> list, List<String> list1){
         for(String str: list1) list.add(str);
         return list;
     }
-    public static @NotNull List<String>  readFile(String fileName, int countRowToRead){
+    public static List<String>  readFile(String fileName, int countRowToRead){
         List <String> capsLockRows = new ArrayList<>();
         try {
             File poem = new File(fileName);

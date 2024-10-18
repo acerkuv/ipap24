@@ -57,6 +57,10 @@ public class Main {
         System.out.println("Королев " + t + "\n");
 
 
+        long qtyAce =  cards.stream().filter(playCard -> playCard.getRank()==Rank.ACE).count();
+        System.out.println("ТУЗЫ!!"  + qtyAce);
+
+
 //     Другие методы подсчета полей и объектов с помощью тдельно класса
         Count count = new Count();
         System.out.println("Сколько тузов в колоде " + count.countRank(Rank.ACE, cards));
