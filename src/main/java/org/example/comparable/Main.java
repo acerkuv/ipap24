@@ -1,9 +1,6 @@
-package org.example.comarable;
+package org.example.comparable;
 
-import java.security.Key;
-import java.sql.Array;
 import java.util.*;
-import java.util.function.Function;
 
 public class Main {
     public static void main(String[] args) {

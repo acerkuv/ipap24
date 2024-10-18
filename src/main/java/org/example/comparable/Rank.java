@@ -1,4 +1,4 @@
-package org.example.comarable;
+package org.example.comparable;
 
 public enum Rank {
     ACE,

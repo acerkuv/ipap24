@@ -1,4 +1,4 @@
-package org.example.comarable;
+package org.example.comparable;
 
 public class PlayCard implements Comparable<PlayCard> {
     private Rank rank;
