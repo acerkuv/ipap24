@@ -50,6 +50,21 @@ public class Main {
 
         System.out.println("Карт масти черви в колоде " + qtyHearts);
 
+        int t = 0;
+        for (PlayCard p: cards){
+            if(p.getRank()==Rank.QUEEN) t++;
+        }
+        System.out.println("Королев " + t + "\n");
+
+
+//     Другие методы подсчета полей и объектов с помощью тдельно класса
+        Count count = new Count();
+        System.out.println("Сколько тузов в колоде " + count.countRank(Rank.ACE, cards));
+
+        System.out.println(" Сколько королей черви в колоде " +
+                count.countObj(new PlayCard(Rank.KING, Suit.HEARTS), cards));
+
+
         }
 
 
