@@ -25,9 +25,12 @@ public class Main {
         System.out.println("\nОценки по математике "  + tomas.getCourseCosts(Courses.MATHEMATICS));
 
 //        Средняя оценка по матиматике
-        System.out.println("\nСредняя оценка по матиматике " +  tomas.getMedianCosts(Courses.MATHEMATICS));
+        System.out.println(" Средняя оценка по матиматике " +  tomas.getMedianCosts(Courses.MATHEMATICS));
 
+        System.out.println("Читаем дневник студента \n");
+        tomas.readDiary();
 
+        System.out.println("Список курсов "  +  tomas.getCourses());
 
 
 

@@ -73,4 +73,29 @@ public class Student extends Diary {
     public Set<Courses> getMyCourses(){
         return this.myCourses;
     }
+    public void readDiary() {
+        String costsStr = "Оценки ";
+        float median = 0, sum = 0;
+        for (Courses c : getCourses()) {
+            List<Integer> costs = getCourseCosts(c);
+            if (costs != null) {
+                costsStr ="Оценки по курсу " + c + " ";
+                for (int i : costs) {
+                    costsStr += (i + ",");
+                    sum += i;
+                }
+                costsStr +=" Средний балл " +  " = " + (sum / (costs.size())) + "";
+            }else {
+                costsStr += " по этому курсу " + c + " еще нет оценок \n";
+            }
+            System.out.println(costsStr);
+        }
+    }
+    public Set<Courses> getCourses(){
+        return this.myCourses;
+    }
+
+
+
+
 }
