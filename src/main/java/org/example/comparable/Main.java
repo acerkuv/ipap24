@@ -1,6 +1,7 @@
 package org.example.comparable;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -60,6 +61,13 @@ public class Main {
         long qtyAce =  cards.stream().filter(playCard -> playCard.getRank()==Rank.ACE).count();
         System.out.println("ТУЗЫ!!"  + qtyAce);
 
+
+        //&!&&&?????????
+        System.out.println(" WOU " +
+        cards.stream().filter(playCard -> playCard.getSuit()==Suit.HEARTS)
+                .collect(Collectors.groupingBy(PlayCard::getRank))
+        );
+        cards.stream().filter(playCard -> playCard.getSuit()==Suit.HEARTS).forEach(System.out::println);
 
 //     Другие методы подсчета полей и объектов с помощью тдельно класса
         Count count = new Count();
