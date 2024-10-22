@@ -1,0 +1,13 @@
+12
+Add keyword "olympiads" to neerc.ifmo.ru/school/io
+Add keyword "neerc" to neerc.ifmo.ru
+Search "olympiads"
+Search "neerc"
+Add keyword "olympiads" to neerc.ifmo.ru
+Search "olympiads"
+Add keyword "olympiads" to neerc.ifmo.ru/school/io
+Remove keyword "olympiads" from neerc.ifmo.ru/school/io
+Search "olympiads"
+Remove keyword "olymp" from neerc.ifmo.ru
+Remove keyword "olympiads" from neerc.ifmo.ru
+Search "olympiads"

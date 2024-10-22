@@ -17,7 +17,6 @@ public class Student extends Diary {
     public void setName(String name) {
         this.name = name;
     }
-
     @Override
     public void addCost(Courses courses, int cost) {
         if(diary.get(courses)==null) {
@@ -27,15 +26,11 @@ public class Student extends Diary {
             temp.add(cost);
             diary.put(courses, temp);
         }
-
     }
-
     @Override
     public List<Integer> getCourseCosts(Courses courses) {
         return this.diary.get(courses);
     }
-
-
     @Override
     public float getMedianCosts(Courses courses) {
         float median = 0;
@@ -47,8 +42,6 @@ public class Student extends Diary {
         }
         return median;
     }
-
-
     @Override
     public boolean addCourse(Courses course) {
         if (myCourses.add(course)) {
@@ -61,14 +54,12 @@ public class Student extends Diary {
             return false;
         }
     }
-
     @Override
     public  void addCourses(List<Courses> list) {
         for (Courses c:list) {
             if(!addCourse(c)) System.out.println("Курс " + c + " уже есть в списке!");
             else System.out.println(c + " добавлен!");
         }
-
     }
     public Set<Courses> getMyCourses(){
         return this.myCourses;
@@ -94,8 +85,6 @@ public class Student extends Diary {
     public Set<Courses> getCourses(){
         return this.myCourses;
     }
-
-
 
 
 }
