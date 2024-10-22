@@ -9,16 +9,8 @@ import java.nio.file.Files;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        File file = new File("input.txt");
-        Charset charset = Charset.forName("US-ASCII");
-        try (BufferedReader reader = Files.newBufferedReader(file.toPath(), charset)) {
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException x) {
-            System.err.format("IOException: %s%n", x);
-        }
+        Read read = new Read("input.txt");
+        read.readFile();
 
 
     }
