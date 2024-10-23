@@ -42,7 +42,7 @@ public class Site {
         if (o == null || getClass() != o.getClass()) return false;
         Site site = (Site) o;
 //        return Objects.equals(url, site.url) && Objects.equals(keyWordsList, site.keyWordsList);
-        return Objects.equals(url, site.url) && Objects.equals(keyWordsList, site.keyWordsList);
+        return Objects.equals(url, site.url);
     }
 
     @Override

@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class Read extends Site {
@@ -36,6 +33,7 @@ public class Read extends Site {
     private void fillSearchEngineBase(String line) {
         String[] question = line.split(" ");
         String url = question[question.length-1];
+
         switch (question[0]) {
             case "Add" -> {
                 String tKeyWord = question[2];
