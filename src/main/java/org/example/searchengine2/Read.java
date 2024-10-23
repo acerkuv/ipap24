@@ -43,8 +43,8 @@ public class Read extends Site {
                 }
                 else {
                     Site site = getSite(url);
-                    site.addKeyWord(tKeyWord);
-                    printOk();
+                    if( site.addKeyWord(tKeyWord)) printOk();
+                    else printAlreadyExists();
                 }
             }
             case "Search" -> {
