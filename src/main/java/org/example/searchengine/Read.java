@@ -10,60 +10,110 @@ import java.util.HashMap;
 
 
 public class Read {
-    private String filename;
+    private final String filename;
     private final HashMap<String, ArrayList<String>> searchEngine = new HashMap<>();
 
     public Read(String filename) {
         this.filename = filename;
     }
+
     public void readFile() throws IOException {
         File file = new File(filename);
         Charset charset = StandardCharsets.US_ASCII;
         try (BufferedReader reader = Files.newBufferedReader(file.toPath(), charset)) {
             String line = null;
             while ((line = reader.readLine()) != null) {
-//                System.out.println(line);
                 fillSearchEngineBase(line);
             }
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
         }
     }
-    public void fillSearchEngineBase(String line){
+// Разбиваем строку на слова и, в зависимости от ситуации, обрабатываем их должным образом
+    public void fillSearchEngineBase(String line) {
         String[] lineStrings = line.split(" ");
-        if(lineStrings[0].equals("Add")) {
+        if (lineStrings[0].equals("Add")) {
             String urlSite = lineStrings[lineStrings.length - 1];
-            System.out.println(urlSite);
+//            System.out.println(urlSite);
             String keyWord = lineStrings[2];
-            saveData(urlSite, keyWord);
+            addKeyWord(urlSite, keyWord);
 
-//            Todo добавить данные в базу
+//            добавить данные в базу
         } else if (lineStrings[0].equals("Search")) {
-//            Todo добавить проверку  на поиск по словам
+//            добавить проверку  на поиск по словам
+            System.out.println(seekKeyWord(lineStrings[1]));
 
-        }else{
-//            Todo добавть удаление из базы
+        } else if (lineStrings[0].equals("Remove")) {
+//            Todo  удаление из базы
+             removeKeyWord(lineStrings[lineStrings.length - 1],lineStrings[2]);
         }
     }
-    public void saveData(String url, String key ){
-        searchEngine.computeIfAbsent(url, k -> new ArrayList<>(Arrays.asList(key)));
-        if(searchEngine.get(url)!=null) {
-            ArrayList<String> keyWords = searchEngine.get(url);
-            boolean isInBase = false;
-//           проверка есть уже кейворд в базе
-            for (String s : keyWords) {
-                if (key.equals(s)) {
-//                   уже есть в базе
-                    isInBase = true;
-
+    public void removeKeyWord( String url, String keyWord){
+        if (searchEngine.get(url)!=null) {
+            ArrayList<String> listKeyWords = searchEngine.get(url);
+            listKeyWords.remove(keyWord);
+            searchEngine.put(url, listKeyWords);
+            prOk();
+        }
+        else {
+            prNotFound();
+        }
+    }
+//    Добавление в поисковую базу слова
+    public void addKeyWord(String url, String keyWord) {
+//        Если слова в базе нет, то добавляем
+        if(!isInUrls(url)) {
+            searchEngine.put(url, new ArrayList<>(Arrays.asList(keyWord)));
+            prOk();
+        }
+//        Иначе проверяем на то, есть ли слово в базе у этого сайта
+        else {
+            ArrayList<String> keysList = searchEngine.get(url);
+//            Если его нет, то добавляем
+            if (!isInKeyWordsList(keysList,keyWord)){
+                keysList.add(keyWord);
+                searchEngine.put(url, keysList);
+                prOk();
+//                Иначе выводим сообщение о том, что оно уже есть в базе
+            }else{
+                prExist();
+            }
+        }
+    }
+//    ПОиск слова по всей базе
+    public String seekKeyWord(String keyWord) {
+        int n = 1, s = 0;
+        String result = "";
+        for (String url : searchEngine.keySet()) {
+            ArrayList<String> listKeywords = searchEngine.get(url);
+            for (String kl : listKeywords) {
+                if (kl.equals(keyWord)) {
+                    s++;
+                    result +=  n + ") " + url + "\n";
+                    n++;
                 }
-
             }
-            if (!isInBase) {
-                keyWords.add(key);
-                searchEngine.put(url, keyWords);
-            }
-
         }
+        return "Results: " + s + " site(s) found \n" + result +"\n=====";
     }
+//    Есть ли сайт в списке ключей базы
+    public boolean isInUrls(String url){
+        for (String u:searchEngine.keySet()) if(u.equals(url)) return true;
+        return false;
+    }
+// Есть ли слово в списке поисковых слов
+    public boolean isInKeyWordsList(ArrayList<String> listOfKeys, String keyWord){
+        for (String key: listOfKeys) if(key.equals(keyWord)) return true;
+        return false;
+    }
+    public void prOk(){
+        System.out.println("Ok\n=====");
+    }
+    public void prExist(){
+        System.out.println("Already Exist\n=====");
+    }
+    public void prNotFound(){
+        System.out.println("Not Found\n=====");
+    }
+
 }
