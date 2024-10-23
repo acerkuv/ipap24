@@ -17,7 +17,7 @@ public class Read {
         this.filename = filename;
     }
 
-    public void readFile() throws IOException {
+    public void readFile()  {
         File file = new File(filename);
         Charset charset = StandardCharsets.US_ASCII;
         try (BufferedReader reader = Files.newBufferedReader(file.toPath(), charset)) {
@@ -34,7 +34,6 @@ public class Read {
         String[] lineStrings = line.split(" ");
         if (lineStrings[0].equals("Add")) {
             String urlSite = lineStrings[lineStrings.length - 1];
-//            System.out.println(urlSite);
             String keyWord = lineStrings[2];
             addKeyWord(urlSite, keyWord);
 
