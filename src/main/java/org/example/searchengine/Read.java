@@ -32,29 +32,28 @@ public class Read {
 // Разбиваем строку на слова и, в зависимости от ситуации, обрабатываем их должным образом
     public void fillSearchEngineBase(String line) {
         String[] lineStrings = line.split(" ");
+//            добавить данные в базу
         if (lineStrings[0].equals("Add")) {
             String urlSite = lineStrings[lineStrings.length - 1];
             String keyWord = lineStrings[2];
             addKeyWord(urlSite, keyWord);
 
-//            добавить данные в базу
-        } else if (lineStrings[0].equals("Search")) {
 //            добавить проверку  на поиск по словам
+        } else if (lineStrings[0].equals("Search")) {
             System.out.println(seekKeyWord(lineStrings[1]));
-
+//          удаление из базы
         } else if (lineStrings[0].equals("Remove")) {
-//            Todo  удаление из базы
              removeKeyWord(lineStrings[lineStrings.length - 1],lineStrings[2]);
         }
     }
     public void removeKeyWord( String url, String keyWord){
-        if (searchEngine.get(url)!=null) {
-            ArrayList<String> listKeyWords = searchEngine.get(url);
+        ArrayList<String> listKeyWords = searchEngine.get(url);
+        if (isInUrls(url) && isInKeyWordsList(listKeyWords, keyWord) ) {
             listKeyWords.remove(keyWord);
             searchEngine.put(url, listKeyWords);
             prOk();
         }
-        else {
+        else if (isInUrls(url) && !isInKeyWordsList(listKeyWords, keyWord)){
             prNotFound();
         }
     }
