@@ -18,6 +18,7 @@ public class Read extends Site {
     public Read(String url) {
         super(url);
     }
+//    public Read(){}
 
     public void readFile() {
         File file = new File("input.txt");
@@ -34,15 +35,40 @@ public class Read extends Site {
 
     private void fillSearchEngineBase(String line) {
         String[] question = line.split("");
+        String url = question[question.length-1];
         switch (question[0]) {
             case "Add" -> {
+                String tKeyWord = question[2];
+                if(!theSiteIsInTheBase(new Site(url, tKeyWord))) {
+                    searchEngineBase.add(new Site(url, tKeyWord));
+                    System.out.println("Добавил сайт");
+                }
+                else {
+                    Site site = getSite(url);
+                    site.addKeyWord(tKeyWord);
+                    System.out.println("Добавил ключевое слово");
+                }
             }
             case "Search" -> {
+                String tKeyWord = question[1];
+                for (Site site: searchEngineBase){
+                    if(site.findKeyWord(tKeyWord)) System.out.println("Найдено слово" + tKeyWord + " " +
+                            site.getUrl());
+                }
+
             }
             case "Remove" -> {
             }
         }
-
+    }
+    public boolean theSiteIsInTheBase(Site site){
+        return searchEngineBase.contains(site);
+    }
+    public Site getSite(String url){
+        for(Site site: searchEngineBase){
+            if(site.getUrl().equals(url)) return site;
+        }
+        return null;
     }
 }
 
