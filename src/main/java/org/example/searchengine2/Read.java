@@ -18,7 +18,7 @@ public class Read extends Site {
     public Read(String url) {
         super(url);
     }
-//    public Read(){}
+    public Read(){}
 
     public void readFile() {
         File file = new File("input.txt");
@@ -34,22 +34,24 @@ public class Read extends Site {
     }
 
     private void fillSearchEngineBase(String line) {
-        String[] question = line.split("");
+        String[] question = line.split(" ");
         String url = question[question.length-1];
         switch (question[0]) {
             case "Add" -> {
                 String tKeyWord = question[2];
                 if(!theSiteIsInTheBase(new Site(url, tKeyWord))) {
                     searchEngineBase.add(new Site(url, tKeyWord));
-                    System.out.println("Добавил сайт");
+                    printOk();
                 }
                 else {
                     Site site = getSite(url);
                     site.addKeyWord(tKeyWord);
-                    System.out.println("Добавил ключевое слово");
+                    printOk();
                 }
             }
             case "Search" -> {
+                String result = "Results:";
+                int n = 0, s = 1;
                 String tKeyWord = question[1];
                 for (Site site: searchEngineBase){
                     if(site.findKeyWord(tKeyWord)) System.out.println("Найдено слово" + tKeyWord + " " +
@@ -58,6 +60,10 @@ public class Read extends Site {
 
             }
             case "Remove" -> {
+                String tKeyWord = question[2];
+                Site site = getSite(url);
+                if(site.removeKeyWord(tKeyWord)) printOk();
+                else printNotFound();
             }
         }
     }
@@ -69,6 +75,15 @@ public class Read extends Site {
             if(site.getUrl().equals(url)) return site;
         }
         return null;
+    }
+    public void printOk(){
+        System.out.println("OK\n======");
+    }
+    public void printAlreadyExists(){
+        System.out.println("Already exists\n======");
+    }
+    public void printNotFound(){
+        System.out.println("Not Found\n======");
     }
 }
 
