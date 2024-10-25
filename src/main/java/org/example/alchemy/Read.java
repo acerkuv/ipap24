@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.TreeMap;
 
 public class Read {
+//    TreeMap<Reaction, Reaction> magicAlgorithms   = new TreeMap<>();
     public void readFile() {
         File file = new File("input.txt");
         Charset charset = StandardCharsets.US_ASCII;
@@ -22,6 +24,9 @@ public class Read {
     }
 
     private void fillSearchEngineBase(String line) {
+            String[] lineStrings = line.split(" ");
+            if(lineStrings[1].equals("->")){
 
+            }
     }
 }
