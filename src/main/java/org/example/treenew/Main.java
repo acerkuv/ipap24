@@ -14,5 +14,8 @@ public class Main {
         t.addToTree("g");
         t.addToTree("h");
 
+        Node f = t.findNodeIntoTree("b");
+        System.out.println(f.toString());
+
     }
 }

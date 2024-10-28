@@ -20,14 +20,13 @@ public class Tree {
 //            get left node first
                 if (Objects.isNull(currentNode.getLeftNode())) {
                     currentNode.setLeftNode(newNode);
-
                     return;
 
 //               get gight second
                 } else if (Objects.isNull(currentNode.getRightNode())) {
                     currentNode.setRightNode(newNode);
-
                     return;
+//  All node have already filled then we select left node sa a current to fill father
                 } else if (Objects.nonNull(currentNode.getRightNode()) && Objects.nonNull(currentNode.getRightNode())) {
                     currentNode = currentNode.getLeftNode();
 
@@ -38,9 +37,21 @@ public class Tree {
 
     }
 
-
     public Node getRootNode() {
         return rootNode;
+    }
+    public Node findNodeIntoTree(String name){
+        Node currentNode = rootNode;
+        Node newNode = new Node(name);
+        while (true){
+            if(currentNode.equals(newNode)) return  currentNode;
+            else if (currentNode.getLeftNode().equals(newNode)) return currentNode.getLeftNode();
+            else if (currentNode.getRightNode().equals(newNode)) return  currentNode.getRightNode();
+            else currentNode = currentNode.getLeftNode();
+
+        }
+
+
     }
 
 }

@@ -33,8 +33,8 @@ public class Tree {
         else { // корневой узел занят
             Node currentNode = rootNode; // начинаем с корневого узла
             Node parentNode;
-            while (true) // мы имеем внутренний выход из цикла
-            {
+//            while (true) // мы имеем внутренний выход из цикла
+//            {
                 parentNode = currentNode;
                 if(value.equals(currentNode.getValue())) {   // если такой элемент в дереве уже есть, не сохраняем его
                     return;    // просто выходим из метода
@@ -56,7 +56,7 @@ public class Tree {
                 }
             }
         }
-    }
+
     public void setTree(String[] value){
 
     }
