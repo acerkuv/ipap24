@@ -1,4 +1,5 @@
 package org.example.regularextentions;
+//https://javarush.com/groups/posts/regulyarnye-vyrazheniya-v-java
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,13 +20,15 @@ public class Main {
 
     public static void main(String[] args) {
         String text = "12YTY999";
-        Pattern pattern = Pattern.compile("\\d");
+        Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
             int start = matcher.start();
             int end = matcher.end();
             System.out.println(text.substring(start, end));
+
         }
+
     }
 
 }
