@@ -1,5 +1,6 @@
 package org.example.regularextentions;
 
+// Класс продукта  name = "стул", number  = "50", code = "ab46"
 public class Product {
     public Product(String name, String number, String code) {
         this.name = name;
@@ -15,4 +16,13 @@ public class Product {
     }
 
     String code;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", number='" + number + '\'' +
+                ", code='" + code + '\'' +
+                '}';
+    }
 }

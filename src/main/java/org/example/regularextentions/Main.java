@@ -1,8 +1,10 @@
 package org.example.regularextentions;
 //https://javarush.com/groups/posts/regulyarnye-vyrazheniya-v-java
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Stream;
 
 /*кровать 20 aabn
         стул 50 ab46
@@ -21,12 +23,20 @@ import java.util.regex.Pattern;
 public class Main {
 
     public static void main(String[] args) {
+
 //        Прочитать файл
         Read read = new Read("regular.txt");
         read.readFile();
 
-        }
+//        Сортированный лист объектов Product по коду "code"
+        List<Product> sortedList = Read.sortedProd();
 
+//        Выводим отсортированные обекты в консоль
+        for(Product product:sortedList)
+            System.out.println(product.toString());
+
+
+    }
 
 
 }

@@ -1,7 +1,5 @@
 package org.example.regularextentions;
 
-import org.intellij.lang.annotations.RegExp;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -14,20 +12,24 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+// Чтение файла readFile()
 public class Read {
     String filename;
-    List<Product> result =  new ArrayList<>();
+    static List<Product> result =  new ArrayList<>();
 
     public Read(String filename) {
         this.filename = filename;
     }
-
+//    Открыть файл и пнрочитать
     public void readFile() {
         File file = new File(filename);
         Charset charset = StandardCharsets.UTF_8;
         try (BufferedReader reader = Files.newBufferedReader(file.toPath(), charset)) {
             String line = null;
             while ((line = reader.readLine()) != null) {
+
+//               прочитать строку их файла
                 readInLie(line);
 
             }
@@ -36,6 +38,7 @@ public class Read {
         }
     }
 
+//    Разьираем строку на слова
     private void readInLie(String line) {
 
         Matcher[] matchersLine ={
@@ -57,7 +60,7 @@ public class Read {
 
     }
 
-
+//    Выделяем слови из строки
     public static String findWord( Matcher matcher, String string){
         String result = null;
         while (matcher.find()) {
@@ -67,11 +70,11 @@ public class Read {
         }
         return result;
     }
-
-//    public ArrayList<Product> getSortedList(){
-//
-//        return products;
-//    }
+//    Сортируем лист продуктов по заданию
+    public static List<Product> sortedProd(){
+        return result.stream()
+                .sorted(Comparator.comparing(Product::getCode).reversed()).toList();
+    }
 
 
 }
